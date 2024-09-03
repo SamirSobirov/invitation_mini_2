@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="custom-select-container">
+  <input type="text" id="custom-select" placeholder="Тип задач">
+  <div class="custom-options">
+    <div class="custom-option">Option 1</div>
+    <div class="custom-option">Option 2</div>
+    <div class="custom-option">Option 3</div>
+    <div class="custom-option">Option 4</div>
+  </div>
+</div>
+
+<style>
+.custom-select-container {
+  position: relative;
+  width: 200px;
+}
+
+.custom-options {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+}
+
+.custom-options .custom-option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.custom-options .custom-option:hover {
+  background-color: #f1f1f1;
+}
+</style>
+
+<script>
+document.getElementById('custom-select').addEventListener('focus', function() {
+  document.querySelector('.custom-options').style.display = 'block';
+});
+
+document.querySelectorAll('.custom-option').forEach(option => {
+  option.addEventListener('click', function() {
+    document.getElementById('custom-select').value = this.textContent;
+    document.querySelector('.custom-options').style.display = 'none';
+  });
+});
+
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('.custom-select-container')) {
+    document.querySelector('.custom-options').style.display = 'none';
+  }
+});
+</script>
+
+    
+</body>
+</html>
